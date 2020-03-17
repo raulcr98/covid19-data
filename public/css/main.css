@@ -231,28 +231,22 @@ tbody tr:hover {
     top: 0;
   }
   table tbody tr td:nth-child(1):before {
-    content: "Date";
+    content: "Country";
   }
   table tbody tr td:nth-child(2):before {
-    content: "Order ID";
+    content: "New Confirmed";
   }
   table tbody tr td:nth-child(3):before {
-    content: "Name";
+    content: "Total Confirmed";
   }
   table tbody tr td:nth-child(4):before {
-    content: "Price";
+    content: "Total Deaths";
   }
   table tbody tr td:nth-child(5):before {
-    content: "Quantity";
+    content: "New Recovered";
   }
   table tbody tr td:nth-child(6):before {
-    content: "Total";
-  }
-
-  .column4,
-  .column5,
-  .column6 {
-    text-align: left;
+    content: "Total Recovered";
   }
 
   .column4,
@@ -262,6 +256,7 @@ tbody tr:hover {
   .column2,
   .column3 {
     width: 100%;
+    text-align: center
   }
 
   tbody tr {
