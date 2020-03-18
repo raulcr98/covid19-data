@@ -88,37 +88,37 @@ export default {
     },
     order_by: function(param) {      
       if ( param === "Country" ) {
-        this.countries.sort((a, b)=> (a.Country > b.Country) ? 
+        this.countries.sort((a, b) => (a.Country > b.Country) ? 
                                       this.country_order : (a.Country < b.Country) ?
                                       -1*this.country_order : 0);
         this.country_order *= -1;
       }
       if ( param === "newConfirmed" ) {
-        this.countries.sort((a, b)=> (a.NewConfirmed > b.NewConfirmed) ?
+        this.countries.sort((a, b) => (a.NewConfirmed > b.NewConfirmed) ?
                                       this.new_confirmed_order : (a.NewConfirmed < b.NewConfirmed) ?
                                       -1*this.new_confirmed_order : 0);
         this.new_confirmed_order *= -1;                                    
       }
       if ( param === "totalConfirmed" ) {
-        this.countries.sort((a, b)=> (a.TotalConfirmed > b.TotalConfirmed) ? 
+        this.countries.sort((a, b) => (a.TotalConfirmed > b.TotalConfirmed) ? 
                                       this.total_confirmed_order : (a.TotalConfirmed < b.TotalConfirmed) ?
                                       -1*this.total_confirmed_order : 0);
         this.total_confirmed_order *= -1;                                    
       }
       if ( param === "totalDeaths" ) {
-        this.countries.sort((a, b)=> (a.TotalDeaths > b.TotalDeaths) ? 
+        this.countries.sort((a, b) => (a.TotalDeaths > b.TotalDeaths) ? 
                                       this.total_deaths_order: (a.TotalDeaths < b.TotalDeaths) ?
                                       -1*this.total_deaths_order : 0);
         this.total_deaths_order *= -1;                                      
       }
       if ( param === "newRecovered" ) {
-        this.countries.sort((a, b)=> (a.NewRecovered > b.NewRecovered) ? 
+        this.countries.sort((a, b) => (a.NewRecovered > b.NewRecovered) ? 
                                       this.new_recovered_order : (a.NewRecovered < b.NewRecovered) ?
                                       -1*this.new_recovered_order : 0);
         this.new_recovered_order *= -1;                                      
       }
       if ( param === "totalRecovered") {
-        this.countries.sort((a, b)=> (a.TotalRecovered > b.TotalRecovered) ? 
+        this.countries.sort((a, b) => (a.TotalRecovered > b.TotalRecovered) ? 
                                       this.total_recovered_order : (a.TotalRecovered < b.TotalRecovered) ?
                                       -1*this.total_recovered_order : 0)
         this.total_recovered_order *= -1;                                      
