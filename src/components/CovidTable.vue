@@ -17,8 +17,10 @@
             <table>
               <thead>
                 <tr class="table100-head"  style="cursor: pointer;">
-                  <th class="column1" 
-                    v-on:click="order_by('Country')">Country</th>
+                  <th class="column1"> 
+                    <span v-on:click="order_by('Country')">Country</span> 
+                    <input placeholder="Search by Country"/>
+                  </th>
                   <th class="column2" 
                     v-on:click="order_by('newConfirmed')">New Confirmed</th>
                   <th class="column3"
@@ -76,7 +78,6 @@ export default {
         "https://api.covid19api.com/summary"
       )
       .then(response => {
-        console.log(response);
         response.data.Countries.map(country => {
           this.countries.push(country);
         });
@@ -136,6 +137,18 @@ export default {
     flex-direction: column;
     align-items: center;
     margin-bottom: 1em;
+  }
+
+  .table100-head .column1 {
+    display: flex;
+    flex-direction: row;
+    padding-top: 1em;
+  }
+
+  .table100-head .column1 input{
+    margin-left: 1em;
+    border-radius: 15px;
+    padding-left: .5em;
   }
 
 </style>
