@@ -109,8 +109,8 @@ export default {
       )
       .then(response => {
         response.data.Countries.map(country => {
-          // this.countries.push(country);
-          country;
+           this.countries.push(country);
+           console.log(this.countries)          
         });
         this.last_update = response.data.Date;
       })
