@@ -8,7 +8,7 @@
       <div class="container-table100">
         
         <div class="header">
-          <h1>Covid19 World Status </h1>
+          <h1>Covid19 World Status </h1>          
           <p> Last update: {{last_update}}</p>          
         </div>
         
@@ -19,7 +19,8 @@
                 <tr class="table100-head"  style="cursor: pointer;">
                   <th class="column1"> 
                     <span v-on:click="order_by('Country')">Country</span> 
-                    <input placeholder="Search by Country"/>
+                    <input placeholder="Search by Country"
+                           v-model="filter_name"/>
                   </th>
                   <th class="column2" 
                     v-on:click="order_by('newConfirmed')">New Confirmed</th>
@@ -33,15 +34,17 @@
                     v-on:click="order_by('totalRecovered')">Total Recovered</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr v-bind:key="country.Country" v-for="country in countries">
-                  <td class="column1">{{ country.Country }}</td>
-                  <td class="column2">{{ country.NewConfirmed }}</td>
-                  <td class="column3">{{ country.TotalConfirmed }}</td>
-                  <td class="column4">{{ country.TotalDeaths }}</td>
-                  <td class="column5">{{ country.NewRecovered }}</td>
-                  <td class="column6">{{ country.TotalRecovered }}</td>
-                </tr>
+              <tbody>              
+                  <!-- CHECKING IF FILTER_NAME IS PREFIX OF THE COUNTRY NAME IN ANY CASE-->                  
+                    <tr v-for="country in filteredItems" v-bind:key="country.Country">
+                      <td class="column1">{{ country.Country }}</td>
+                      <td class="column2">{{ country.NewConfirmed }}</td>
+                      <td class="column3">{{ country.TotalConfirmed }}</td>
+                      <td class="column4">{{ country.TotalDeaths }}</td>
+                      <td class="column5">{{ country.NewRecovered }}</td>
+                      <td class="column6">{{ country.TotalRecovered }}</td>
+                    </tr>
+                  
               </tbody>
             </table>
           </div>
@@ -58,15 +61,42 @@ export default {
   name: 'CovidTable',
   data() {
     return {
-      countries: [],
+      countries: [
+        /*{
+          Country: "Cuba",
+          NewConfirmed: 1,
+          TotalConfirmed: 11, 
+          TotalDeaths: 1,
+          NewRecovered: 0,
+          TotalRecovered: 0 
+        },
+        {
+          Country: "Italia",
+          NewConfirmed: 200,
+          TotalConfirmed: 30000, 
+          TotalDeaths: 3000,
+          NewRecovered: 100,
+          TotalRecovered: 1000
+        }*/
+      ],
+      filter_name: '',
       last_update: '',
+      // ORDER DIRECTION
       country_order: -1,
       new_confirmed_order: -1,
       total_confirmed_order: -1,
       total_deaths_order: -1,
       new_recovered_order: -1,
       total_recovered_order: -1,
+      // END ORDER DIRECTION
     };
+  },
+  computed: {
+    filteredItems() {
+      return this.countries.filter(country => {
+        return country.Country.toLowerCase().indexOf(this.filter_name.toLowerCase())>-1
+      })
+    }
   },
   mounted:function(){
     this.getCases()
@@ -79,7 +109,8 @@ export default {
       )
       .then(response => {
         response.data.Countries.map(country => {
-          this.countries.push(country);
+           this.countries.push(country);
+           console.log(this.countries)          
         });
         this.last_update = response.data.Date;
       })
@@ -127,7 +158,9 @@ export default {
     }
   },
   props: {
+    
   }
+  // 
 }
 </script>
 
